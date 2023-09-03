@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,10 +13,6 @@ class _HomeViewState extends State<HomeView> {
   SharedPreferences? prefs;
 
   String sValue = "";
-  Int sInt = ("",) as Int;
-  Bool sBool = ("",) as Bool;
-  Double sDouble = ("",) as Double;
-  // StringList sStringList = ('', <String>['', '', '']) as DomStringList;
 
   setInstance() async {
     prefs = await SharedPreferences.getInstance();
@@ -26,27 +20,17 @@ class _HomeViewState extends State<HomeView> {
 
   setData() {
     prefs!.setString('s_value', "123456789");
-    prefs!.setInt('counter', 10);
-    prefs!.setBool('repeat', true);
-    prefs!.setDouble('decimal', 1.5);
-    prefs!.setStringList('items', <String>['Earth', 'Moon', 'Sun']);
   }
 
   getData() {
     sValue = prefs!.getString('s_value')!;
-    sInt = prefs!.getInt('sInt')! as Int;
-    sBool = prefs!.getInt('sBool')! as Bool;
-    sDouble = prefs!.getInt('sDouble')! as Double;
-    // sStringList = prefs!.getInt('sStringList')! as DomStringList;
-
     setState(() {});
   }
 
   @override
-  Future<void> initState() async {
+  void initState() {
     // TODO: implement initState
     setInstance();
-    await prefs?.remove('counter');
     super.initState();
   }
 
@@ -60,13 +44,13 @@ class _HomeViewState extends State<HomeView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Text(
-            //   "String value : $sValue",
-            //   style: const TextStyle(
-            //     fontSize: 20,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
+            Text(
+              "String value : $sValue",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 15),
             ElevatedButton(
               onPressed: setData,
