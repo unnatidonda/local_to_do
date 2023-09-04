@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:local_to_do/view/home_second_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatefulWidget {
@@ -20,11 +21,6 @@ class _HomeViewState extends State<HomeView> {
 
   setData() {
     prefs!.setString('s_value', "123456789");
-  }
-
-  getData() {
-    sValue = prefs!.getString('s_value')!;
-    setState(() {});
   }
 
   @override
@@ -53,15 +49,39 @@ class _HomeViewState extends State<HomeView> {
             ),
             const SizedBox(height: 15),
             ElevatedButton(
-              onPressed: setData,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeSecondScreen(),
+                  ),
+                );
+              },
               child: const Text("Send Data"),
+              // setData,
+              //   onLongPress: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => const HomeSecondScreen(),
+              //       ),
+              //     );
+              //   },
+              //   child: const Text("Send Data"),
+              // ),
+              // const SizedBox(height: 15),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => const HomeSecondScreen(),
+              //       ),
+              //     );
+              //   },
+              //   child: const Text("Send Data"),
+              // ),
             ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: getData,
-              child: const Text("Get Data"),
-            ),
-            const SizedBox(height: 15),
           ],
         ),
       ),
