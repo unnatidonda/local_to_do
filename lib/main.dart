@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:local_to_do/view/home_view.dart';
+import 'package:local_to_do/view/multiple_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeView(),
+      home: const MultipleScreen(),
     );
   }
 }

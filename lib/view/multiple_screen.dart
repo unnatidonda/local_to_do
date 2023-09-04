@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,39 +12,40 @@ class _MultipleScreenState extends State<MultipleScreen> {
   // Obtain shared preferences.
   SharedPreferences? prefs;
 
-  String sValue = "";
-  Int sInt = ("",) as Int;
-  Bool sBool = ("",) as Bool;
-  Double sDouble = ("",) as Double;
-  // StringList sStringList = ('', <String>['', '', '']) as DomStringList;
+  String sPValue = "";
+  bool? bValue;
+  int? iValue;
+  double? dValue;
+  List<String> dataOne = [""];
 
   setInstance() async {
     prefs = await SharedPreferences.getInstance();
   }
 
   setData() {
-    prefs!.setString('s_value', "123456789");
-    prefs!.setInt('counter', 10);
-    prefs!.setBool('repeat', true);
-    prefs!.setDouble('decimal', 1.5);
-    prefs!.setStringList('items', <String>['Earth', 'Moon', 'Sun']);
+    prefs!.setString('prefV', "123456789");
+    prefs!.setBool('base', true);
+    prefs!.setDouble('point', 3.0);
+    prefs!.setInt('fonts', 5);
+    prefs!.setStringList('listText', [
+      "hello",
+      "who r you",
+    ]);
   }
 
   getData() {
-    sValue = prefs!.getString('s_value')!;
-    sInt = prefs!.getInt('sInt')! as Int;
-    sBool = prefs!.getInt('sBool')! as Bool;
-    sDouble = prefs!.getInt('sDouble')! as Double;
-    // sStringList = prefs!.getInt('sStringList')! as DomStringList;
-
+    sPValue = prefs!.getString('prefV')!;
+    bValue = prefs!.getBool('base')!;
+    dValue = prefs!.getDouble('point')!;
+    iValue = prefs!.getInt('fonts')!;
+    dataOne = prefs!.getStringList('listText')!;
     setState(() {});
   }
 
   @override
-  Future<void> initState() async {
+  void initState() {
     // TODO: implement initState
     setInstance();
-    // await prefs?.remove('counter');
     super.initState();
   }
 
@@ -60,13 +59,41 @@ class _MultipleScreenState extends State<MultipleScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Text(
-            //   "String value : $sValue",
-            //   style: const TextStyle(
-            //     fontSize: 20,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
+            Text(
+              "String value : $sPValue",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "bool value : $bValue",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "int value : $iValue",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "double value : $dValue",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "list value : $dataOne",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 15),
             ElevatedButton(
               onPressed: setData,
