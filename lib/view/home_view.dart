@@ -10,17 +10,23 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // Obtain shared preferences.
   SharedPreferences? prefs;
 
-  String sValue = "";
+  List<String> dataOne = [""];
 
   setInstance() async {
     prefs = await SharedPreferences.getInstance();
   }
 
   setData() {
-    prefs!.setString('s_value', "123456789");
+    prefs!.setString('prefV', "123456789");
+    prefs!.setBool('base', true);
+    prefs!.setDouble('point', 3.0);
+    prefs!.setInt('fonts', 5);
+    prefs!.setStringList('listText', [
+      "unnati",
+      "krushika",
+    ]);
   }
 
   @override
@@ -41,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "String value : $sValue",
+              "list value : $dataOne",
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -50,6 +56,7 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {
+                setData();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -58,29 +65,6 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
               child: const Text("Send Data"),
-              // setData,
-              //   onLongPress: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => const HomeSecondScreen(),
-              //       ),
-              //     );
-              //   },
-              //   child: const Text("Send Data"),
-              // ),
-              // const SizedBox(height: 15),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => const HomeSecondScreen(),
-              //       ),
-              //     );
-              //   },
-              //   child: const Text("Send Data"),
-              // ),
             ),
           ],
         ),

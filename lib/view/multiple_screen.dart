@@ -9,7 +9,6 @@ class MultipleScreen extends StatefulWidget {
 }
 
 class _MultipleScreenState extends State<MultipleScreen> {
-  // Obtain shared preferences.
   SharedPreferences? prefs;
 
   String sPValue = "";

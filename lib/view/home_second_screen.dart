@@ -9,17 +9,24 @@ class HomeSecondScreen extends StatefulWidget {
 }
 
 class _HomeSecondScreenState extends State<HomeSecondScreen> {
-  // Obtain shared preferences.
   SharedPreferences? prefs;
 
-  String sValue = "";
+  String sPValue = "";
+  bool? bValue;
+  int? iValue;
+  double? dValue;
+  List<String> dataOne = [""];
 
   setInstance() async {
     prefs = await SharedPreferences.getInstance();
   }
 
   getData() {
-    sValue = prefs!.getString('s_value')!;
+    sPValue = prefs!.getString('prefV')!;
+    bValue = prefs!.getBool('base')!;
+    dValue = prefs!.getDouble('point')!;
+    iValue = prefs!.getInt('fonts')!;
+    dataOne = prefs!.getStringList('listText')!;
     setState(() {});
   }
 
@@ -41,7 +48,7 @@ class _HomeSecondScreenState extends State<HomeSecondScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "String value : $sValue",
+              "list value : $dataOne",
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
